@@ -67,6 +67,7 @@
     <Compile Include="Auswertung.Designer.cs">
       <DependentUpon>Auswertung.cs</DependentUpon>
     </Compile>
+    <Compile Include="AuswertungFehlzeit.cs" />
     <Compile Include="Database.cs" />
     <Compile Include="DateTimeExtensions.cs" />
     <Compile Include="Einsatz.cs" />
@@ -132,6 +133,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="ClassDiagram1.cd" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

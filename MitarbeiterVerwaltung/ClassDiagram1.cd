@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="MitarbeiterVerwaltung.Einsatz">
+    <Position X="4" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAIAAAAKAAAACAAAACAAAAAiAAAAAgAAAAAAAgA=</HashCode>
+      <FileName>Einsatz.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MitarbeiterVerwaltung.Fehlgrund">
+    <Position X="5.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAIAAAACAAAAAAAAAAAAgA=</HashCode>
+      <FileName>Fehlgrund.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MitarbeiterVerwaltung.Fehlzeit">
+    <Position X="2.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAECAAIBAAAKAAAACAAAACAAAAAoAAAACAAAAAAAAgA=</HashCode>
+      <FileName>Fehlzeit.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MitarbeiterVerwaltung.Mitarbeiter">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAiAAAAIhAAAAAQAAAAAAAAAAAAAAACAAAAAgAAAgA=</HashCode>
+      <FileName>Mitarbeiter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MitarbeiterVerwaltung.NeueFehlzeit">
+    <Position X="8.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAQAAIAAACAQABAAAACACQACAQSAAAQCgDAAAAAAAAA=</HashCode>
+      <FileName>NeueFehlzeit.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MitarbeiterVerwaltung.Database">
+    <Position X="14.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAQAAEAAAAAAAAAAgCAAAABAwAIAAAAAAAAAAAEEAAA=</HashCode>
+      <FileName>Database.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MitarbeiterVerwaltung.NeuerMitarbeiter">
+    <Position X="10.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQAAACgQChAAAACQAAECAAAAAAAAgCAAAAAAEAA=</HashCode>
+      <FileName>NeuerMitarbeiter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MitarbeiterVerwaltung.NeuerEinsatz">
+    <Position X="12.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>cAAAABAAACAQABAAAACACAACAAwAAADAgCAAAAAAAQA=</HashCode>
+      <FileName>NeuerEinsatz.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

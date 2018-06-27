@@ -44,16 +44,17 @@
             this.label5 = new System.Windows.Forms.Label();
             this.btnMitarbeiterUpdate = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.btnNeuerEinsatzForm = new System.Windows.Forms.Button();
-            this.btnNeueFehlzeitForm = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabStammdaten = new System.Windows.Forms.TabPage();
             this.tabEinsatz = new System.Windows.Forms.TabPage();
             this.tabFehlzeiten = new System.Windows.Forms.TabPage();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.mitarbeiterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.neuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.neuerMitarbeiterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.einsatzToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.fehlzeitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.auswertungToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.fehlzeitenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -76,7 +77,7 @@
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.lbMitarbeiter);
-            this.groupBox2.Location = new System.Drawing.Point(12, 34);
+            this.groupBox2.Location = new System.Drawing.Point(12, 27);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(212, 381);
             this.groupBox2.TabIndex = 2;
@@ -85,20 +86,20 @@
             // 
             // lbEinsatz
             // 
-            this.lbEinsatz.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.lbEinsatz.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lbEinsatz.FormattingEnabled = true;
-            this.lbEinsatz.Location = new System.Drawing.Point(6, 6);
+            this.lbEinsatz.Location = new System.Drawing.Point(3, 3);
             this.lbEinsatz.Name = "lbEinsatz";
-            this.lbEinsatz.Size = new System.Drawing.Size(244, 312);
+            this.lbEinsatz.Size = new System.Drawing.Size(250, 349);
             this.lbEinsatz.TabIndex = 0;
             // 
             // lbFehlzeit
             // 
-            this.lbFehlzeit.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.lbFehlzeit.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lbFehlzeit.FormattingEnabled = true;
             this.lbFehlzeit.Location = new System.Drawing.Point(3, 3);
             this.lbFehlzeit.Name = "lbFehlzeit";
-            this.lbFehlzeit.Size = new System.Drawing.Size(250, 312);
+            this.lbFehlzeit.Size = new System.Drawing.Size(250, 349);
             this.lbFehlzeit.TabIndex = 0;
             // 
             // tbVorname
@@ -214,32 +215,12 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Mitarbeiter";
             // 
-            // btnNeuerEinsatzForm
-            // 
-            this.btnNeuerEinsatzForm.Location = new System.Drawing.Point(0, 329);
-            this.btnNeuerEinsatzForm.Name = "btnNeuerEinsatzForm";
-            this.btnNeuerEinsatzForm.Size = new System.Drawing.Size(253, 23);
-            this.btnNeuerEinsatzForm.TabIndex = 11;
-            this.btnNeuerEinsatzForm.Text = "Neuer Einsatz";
-            this.btnNeuerEinsatzForm.UseVisualStyleBackColor = true;
-            this.btnNeuerEinsatzForm.Click += new System.EventHandler(this.btnNeuerEinsatzForm_Click);
-            // 
-            // btnNeueFehlzeitForm
-            // 
-            this.btnNeueFehlzeitForm.Location = new System.Drawing.Point(0, 329);
-            this.btnNeueFehlzeitForm.Name = "btnNeueFehlzeitForm";
-            this.btnNeueFehlzeitForm.Size = new System.Drawing.Size(253, 23);
-            this.btnNeueFehlzeitForm.TabIndex = 12;
-            this.btnNeueFehlzeitForm.Text = "Neue Fehlzeit";
-            this.btnNeueFehlzeitForm.UseVisualStyleBackColor = true;
-            this.btnNeueFehlzeitForm.Click += new System.EventHandler(this.btnNeueFehlzeitForm_Click);
-            // 
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tabStammdaten);
             this.tabControl1.Controls.Add(this.tabEinsatz);
             this.tabControl1.Controls.Add(this.tabFehlzeiten);
-            this.tabControl1.Location = new System.Drawing.Point(233, 34);
+            this.tabControl1.Location = new System.Drawing.Point(230, 27);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(264, 381);
@@ -258,7 +239,6 @@
             // 
             // tabEinsatz
             // 
-            this.tabEinsatz.Controls.Add(this.btnNeuerEinsatzForm);
             this.tabEinsatz.Controls.Add(this.lbEinsatz);
             this.tabEinsatz.Location = new System.Drawing.Point(4, 22);
             this.tabEinsatz.Name = "tabEinsatz";
@@ -270,10 +250,10 @@
             // 
             // tabFehlzeiten
             // 
-            this.tabFehlzeiten.Controls.Add(this.btnNeueFehlzeitForm);
             this.tabFehlzeiten.Controls.Add(this.lbFehlzeit);
             this.tabFehlzeiten.Location = new System.Drawing.Point(4, 22);
             this.tabFehlzeiten.Name = "tabFehlzeiten";
+            this.tabFehlzeiten.Padding = new System.Windows.Forms.Padding(3);
             this.tabFehlzeiten.Size = new System.Drawing.Size(256, 355);
             this.tabFehlzeiten.TabIndex = 2;
             this.tabFehlzeiten.Text = "Fehlzeiten";
@@ -282,40 +262,65 @@
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mitarbeiterToolStripMenuItem});
+            this.neuToolStripMenuItem,
+            this.auswertungToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(503, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(505, 24);
             this.menuStrip1.TabIndex = 7;
             this.menuStrip1.Text = "menuStrip1";
             // 
-            // mitarbeiterToolStripMenuItem
-            // 
-            this.mitarbeiterToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.neuToolStripMenuItem,
-            this.auswertungToolStripMenuItem});
-            this.mitarbeiterToolStripMenuItem.Name = "mitarbeiterToolStripMenuItem";
-            this.mitarbeiterToolStripMenuItem.Size = new System.Drawing.Size(77, 20);
-            this.mitarbeiterToolStripMenuItem.Text = "Mitarbeiter";
-            // 
             // neuToolStripMenuItem
             // 
+            this.neuToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.neuerMitarbeiterToolStripMenuItem,
+            this.einsatzToolStripMenuItem,
+            this.fehlzeitToolStripMenuItem});
             this.neuToolStripMenuItem.Name = "neuToolStripMenuItem";
-            this.neuToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.neuToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
             this.neuToolStripMenuItem.Text = "Neu...";
-            this.neuToolStripMenuItem.Click += new System.EventHandler(this.neuToolStripMenuItem_Click);
+            // 
+            // neuerMitarbeiterToolStripMenuItem
+            // 
+            this.neuerMitarbeiterToolStripMenuItem.Name = "neuerMitarbeiterToolStripMenuItem";
+            this.neuerMitarbeiterToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.neuerMitarbeiterToolStripMenuItem.Text = "Mitarbeiter";
+            this.neuerMitarbeiterToolStripMenuItem.Click += new System.EventHandler(this.neuToolStripMenuItem_Click);
+            // 
+            // einsatzToolStripMenuItem
+            // 
+            this.einsatzToolStripMenuItem.Name = "einsatzToolStripMenuItem";
+            this.einsatzToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.einsatzToolStripMenuItem.Text = "Einsatz";
+            this.einsatzToolStripMenuItem.Click += new System.EventHandler(this.einsatzToolStripMenuItem_Click);
+            // 
+            // fehlzeitToolStripMenuItem
+            // 
+            this.fehlzeitToolStripMenuItem.Name = "fehlzeitToolStripMenuItem";
+            this.fehlzeitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.fehlzeitToolStripMenuItem.Text = "Fehlzeit";
+            this.fehlzeitToolStripMenuItem.Click += new System.EventHandler(this.fehlzeitToolStripMenuItem_Click);
             // 
             // auswertungToolStripMenuItem
             // 
+            this.auswertungToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fehlzeitenToolStripMenuItem});
             this.auswertungToolStripMenuItem.Name = "auswertungToolStripMenuItem";
-            this.auswertungToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.auswertungToolStripMenuItem.Size = new System.Drawing.Size(83, 20);
             this.auswertungToolStripMenuItem.Text = "Auswertung";
+            // 
+            // fehlzeitenToolStripMenuItem
+            // 
+            this.fehlzeitenToolStripMenuItem.Name = "fehlzeitenToolStripMenuItem";
+            this.fehlzeitenToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.fehlzeitenToolStripMenuItem.Text = "Fehlzeiten";
+            this.fehlzeitenToolStripMenuItem.Click += new System.EventHandler(this.fehlzeitenToolStripMenuItem_Click);
             // 
             // MitarbeiterVerwaltung
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(503, 422);
+            this.ClientSize = new System.Drawing.Size(505, 414);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.menuStrip1);
@@ -356,16 +361,17 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button btnMitarbeiterUpdate;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Button btnNeuerEinsatzForm;
-        private System.Windows.Forms.Button btnNeueFehlzeitForm;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabStammdaten;
         private System.Windows.Forms.TabPage tabEinsatz;
         private System.Windows.Forms.TabPage tabFehlzeiten;
         private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem mitarbeiterToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem neuToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem neuerMitarbeiterToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem einsatzToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem fehlzeitToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem auswertungToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem fehlzeitenToolStripMenuItem;
     }
 }
 

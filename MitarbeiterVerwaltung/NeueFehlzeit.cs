@@ -34,12 +34,16 @@ namespace MitarbeiterVerwaltung
 
             string von = dtpFehlzeitDatumVon.Value.ToString("yyyy-MM-dd");
             string bis = dtpFehlzeitDatumBis.Value.ToString("yyyy-MM-dd");
+
             int index = cbFehlgrund.SelectedIndex;
             int grund_id = fehlgrund.Find(grund => grund.Id == fehlgrund[index].Id).Id;
+
             DateTime d1 = dtpFehlzeitDatumVon.Value.Date;
             DateTime d2 = dtpFehlzeitDatumBis.Value.Date;
+
             int fehltage = Convert.ToInt32((d1 - d2).TotalDays);
-            fehltage = (fehltage * -1) + 1;
+
+            fehltage = (fehltage * - 1) + 1;
             db.Insert("fehlzeit", new Fehlzeit(0, mitarbeiterId, von, bis, grund_id, fehltage ));
             MV.fillFehlzeitBox(mitarbeiterId);
             this.Close();
@@ -52,6 +56,11 @@ namespace MitarbeiterVerwaltung
             {
                 cbFehlgrund.Items.Add(grund.Grund);
             }
+        }
+
+        private void adasdToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

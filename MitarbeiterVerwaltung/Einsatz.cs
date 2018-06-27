@@ -20,7 +20,7 @@ namespace MitarbeiterVerwaltung
         public string Von { get { return von; } set { von = value; } }
         public string Bis { get { return bis; } set { bis = value; } }
 
-        public Einsatz (int id, int ma_id, string datum, string von, string bis)
+        public Einsatz(int id, int ma_id, string datum, string von, string bis)
         {
             Id = id;
             Ma_id = ma_id;

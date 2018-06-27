@@ -12,9 +12,44 @@ namespace MitarbeiterVerwaltung
 {
     public partial class Auswertung : Form
     {
-        public Auswertung()
+        MitarbeiterVerwaltung MV;
+        Database db = new Database();
+        List<AuswertungFehlzeit> awFehlzeiten;
+        bool insgesamt = false;
+        public Auswertung(MitarbeiterVerwaltung mv)
         {
+            MV = mv;
             InitializeComponent();
+            fillGridFehlzeiten(insgesamt);
+        }
+
+        private void fillGridFehlzeiten(bool insgesamt)
+        {
+            awFehlzeiten = db.getAuswertungFehlzeiten(insgesamt);
+            var bindingList = new BindingList<AuswertungFehlzeit>(awFehlzeiten);
+            var source = new BindingSource(bindingList, null);
+            dgvFehlzeiten.DataSource = source;
+            dgvFehlzeiten.AutoResizeColumnHeadersHeight();
+            dgvFehlzeiten.AutoResizeRows( DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders);
+        }
+
+        private void fillGridEinsatz()
+        {
+
+        }
+
+        private void chbInsgesamt_CheckedChanged(object sender, EventArgs e)
+        {
+            insgesamt = !insgesamt;
+            fillGridFehlzeiten(insgesamt);
+        }
+
+        private void btnSortByDate_Click(object sender, EventArgs e)
+        {
+            if(cbJahr.SelectedIndex != -1)
+            {
+                fillGridFehlzeiten(insgesamt);
+            }
         }
     }
 }

@@ -12,6 +12,7 @@ namespace MitarbeiterVerwaltung
         {
             return date.DayOfWeek != DayOfWeek.Saturday
                 && date.DayOfWeek != DayOfWeek.Sunday;
+
         }
     }
 }

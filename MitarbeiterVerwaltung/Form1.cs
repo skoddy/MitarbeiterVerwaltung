@@ -132,12 +132,7 @@ namespace MitarbeiterVerwaltung
 
         private void btnNeuerEinsatzForm_Click(object sender, EventArgs e)
         {
-            int index = lbMitarbeiter.SelectedIndex;
-            if (index != -1)
-            {
-                NeuerEinsatz ne = new NeuerEinsatz(this, mitarbeiter[index].Id, mitarbeiter[index].Nachname, mitarbeiter[index].Vorname);
-                ne.ShowDialog();
-            }
+
         }
 
         private void btnNeueFehlzeitForm_Click(object sender, EventArgs e)
@@ -147,6 +142,10 @@ namespace MitarbeiterVerwaltung
             {
                 NeueFehlzeit nf = new NeueFehlzeit(this, mitarbeiter[index].Id, mitarbeiter[index].Nachname, mitarbeiter[index].Vorname);
                 nf.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Bitte erst einen Mitarbeiter auswählen.");
             }
         }
 
@@ -167,15 +166,41 @@ namespace MitarbeiterVerwaltung
             }
         }
 
-        private void refreshMitarbeiter()
-        {
-
-        }
-
         private void neuToolStripMenuItem_Click(object sender, EventArgs e)
         {
             NeuerMitarbeiter nm = new NeuerMitarbeiter(this);
             nm.ShowDialog();
+        }
+
+        private void einsatzToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int index = lbMitarbeiter.SelectedIndex;
+            if (index != -1)
+            {
+                NeuerEinsatz ne = new NeuerEinsatz(this, mitarbeiter[index].Id, mitarbeiter[index].Nachname, mitarbeiter[index].Vorname);
+                ne.ShowDialog();
+            }
+
+        }
+
+        private void fehlzeitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int index = lbMitarbeiter.SelectedIndex;
+            if (index != -1)
+            {
+                NeueFehlzeit nf = new NeueFehlzeit(this, mitarbeiter[index].Id, mitarbeiter[index].Nachname, mitarbeiter[index].Vorname);
+                nf.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Bitte erst einen Mitarbeiter auswählen.");
+            }
+        }
+
+        private void fehlzeitenToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Auswertung a = new Auswertung(this);
+            a.ShowDialog();
         }
     }
 }

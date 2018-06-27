@@ -6,6 +6,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Linq;
 
 namespace MitarbeiterVerwaltung
 {
@@ -126,11 +127,7 @@ namespace MitarbeiterVerwaltung
         {
             List<Mitarbeiter> list = new List<Mitarbeiter>();
             Mitarbeiter m;
-
-            MySqlCommand cmd = dbConnection.CreateCommand();
-            cmd.CommandText = "SELECT * FROM mitarbeiter ORDER BY nachname ASC";
-
-            MySqlDataReader reader = cmd.ExecuteReader();
+            MySqlDataReader reader = sooperDooperMysqlFuncyWunky("SELECT * FROM mitarbeiter ORDER BY nachname ASC");
 
             while (reader.Read())
             {
@@ -154,11 +151,7 @@ namespace MitarbeiterVerwaltung
         {
             List<Fehlgrund> list = new List<Fehlgrund>();
             Fehlgrund f;
-
-            MySqlCommand cmd = dbConnection.CreateCommand();
-            cmd.CommandText = "SELECT * FROM fehlgrund ORDER BY grund ASC";
-
-            MySqlDataReader reader = cmd.ExecuteReader();
+            MySqlDataReader reader = sooperDooperMysqlFuncyWunky("SELECT * FROM fehlgrund ORDER BY grund ASC");
 
             while (reader.Read())
             {
@@ -179,10 +172,7 @@ namespace MitarbeiterVerwaltung
             List<Einsatz> list = new List<Einsatz>();
             Einsatz e;
 
-            MySqlCommand cmd = dbConnection.CreateCommand();
-            cmd.CommandText = $"SELECT * FROM einsatz WHERE Ma_id={id}";
-
-            MySqlDataReader reader = cmd.ExecuteReader();
+            MySqlDataReader reader = sooperDooperMysqlFuncyWunky($"SELECT * FROM einsatz WHERE Ma_id={id}");
 
             while (reader.Read())
             {
@@ -204,11 +194,7 @@ namespace MitarbeiterVerwaltung
         {
             List<Fehlzeit> list = new List<Fehlzeit>();
             Fehlzeit f;
-
-            MySqlCommand cmd = dbConnection.CreateCommand();
-            cmd.CommandText = $"SELECT * FROM fehlzeit WHERE Ma_id={id}";
-
-            MySqlDataReader reader = cmd.ExecuteReader();
+            MySqlDataReader reader = sooperDooperMysqlFuncyWunky($"SELECT * FROM fehlzeit WHERE Ma_id={id}");
 
             while (reader.Read())
             {
@@ -227,33 +213,64 @@ namespace MitarbeiterVerwaltung
 
             return list;
         }
-        public Mitarbeiter getPersonal(int id)
+
+
+        public List<AuswertungFehlzeit> getAuswertungFehlzeiten(bool insgesamt)
         {
-
-            Mitarbeiter m;
-
-            MySqlCommand cmd = dbConnection.CreateCommand();
-            cmd.CommandText = $"SELECT * FROM mitarbeiter WHERE id={id}";
-
-            MySqlDataReader reader = cmd.ExecuteReader();
-            if (reader.Read())
+            List<AuswertungFehlzeit> list = new List<AuswertungFehlzeit>();
+            string q;
+            if(insgesamt)
             {
+                q = "SELECT mitarbeiter.Vorname, mitarbeiter.Nachname, SUM(fehlzeit.Fehltage) " +
+                "FROM mitarbeiter, fehlzeit, fehlgrund " +
+                "WHERE fehlzeit.Ma_id = mitarbeiter.Id AND fehlgrund.Id=fehlzeit.Grund_id GROUP BY mitarbeiter.Id";
+                MySqlDataReader reader = sooperDooperMysqlFuncyWunky(q);
+                AuswertungFehlzeit f;
 
-                m = new Mitarbeiter(
-                    reader.GetInt32(0),
-                    reader.GetString(1),
-                    reader.GetString(2),
-                    reader.GetString(3),
-                    reader.IsDBNull(0) ? 0 : reader.GetInt32(4),
-                    reader.IsDBNull(0) ? 0 : reader.GetInt32(5)
-                    );
+                while (reader.Read())
+                {
+                    f = new AuswertungFehlzeit(
+                        reader.GetString(0),
+                        reader.GetString(1),
+                        reader.GetInt32(2)
+                        );
+                    list.Add(f);
+                }
+
                 reader.Close();
-                return m;
             }
-            return null;
+            else
+            {
+                q = "SELECT mitarbeiter.Vorname, mitarbeiter.Nachname, fehlgrund.Grund, SUM(fehlzeit.Fehltage) " +
+                    "FROM mitarbeiter, fehlzeit, fehlgrund " +
+                    "WHERE fehlzeit.Ma_id = mitarbeiter.Id AND fehlgrund.Id=fehlzeit.Grund_id GROUP BY mitarbeiter.Id, fehlgrund.Id";
+                MySqlDataReader reader = sooperDooperMysqlFuncyWunky(q);
+                AuswertungFehlzeit f;
+
+                while (reader.Read())
+                {
+                    f = new AuswertungFehlzeit(
+                        reader.GetString(0),
+                        reader.GetString(1),
+                        reader.GetString(2),
+                        reader.GetInt32(3)
+                        );
+                    list.Add(f);
+                }
+
+                reader.Close();
+            }
+
+            return list;
         }
 
-
+        private MySqlDataReader sooperDooperMysqlFuncyWunky(string q)
+        {
+            MySqlCommand cmd = dbConnection.CreateCommand();
+            cmd.CommandText = q;
+            MySqlDataReader reader = cmd.ExecuteReader();
+            return reader;
+        }
 
         ~Database()
         {
