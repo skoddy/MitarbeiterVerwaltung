@@ -15,6 +15,7 @@ namespace MitarbeiterVerwaltung
         List<Mitarbeiter> mitarbeiter = new List<Mitarbeiter>();
         List<Einsatz> einsatz = new List<Einsatz>();
         List<Fehlzeit> fehlzeit = new List<Fehlzeit>();
+
         Database db = new Database();
 
         public MitarbeiterVerwaltung()

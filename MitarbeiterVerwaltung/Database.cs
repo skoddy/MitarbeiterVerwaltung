@@ -31,6 +31,7 @@ namespace MitarbeiterVerwaltung
                 MessageBox.Show(ex.Message);
             }
         }
+
         public void disconnect()
         {
             dbConnection.Close();
@@ -183,6 +184,7 @@ namespace MitarbeiterVerwaltung
 
             return list;
         }
+
         public List<Fehlzeit> getFehlzeitList(int id)
         {
             List<Fehlzeit> list = new List<Fehlzeit>();
@@ -205,7 +207,6 @@ namespace MitarbeiterVerwaltung
 
             return list;
         }
-
 
         public List<AuswertungFehlzeit> getAuswertungFehlzeiten(bool insgesamt)
         {
