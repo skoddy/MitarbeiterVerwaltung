@@ -36,5 +36,10 @@ namespace MitarbeiterVerwaltung
             MV.fillEinsatzBox(mitarbeiterId);
             this.Close();
         }
+
+        private void btnAbbrechen_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

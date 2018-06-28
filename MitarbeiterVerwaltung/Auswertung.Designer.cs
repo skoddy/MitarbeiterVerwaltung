@@ -31,17 +31,17 @@
             this.dgvFehlzeiten = new System.Windows.Forms.DataGridView();
             this.cbJahr = new System.Windows.Forms.ComboBox();
             this.cbMonat = new System.Windows.Forms.ComboBox();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.chbInsgesamt = new System.Windows.Forms.CheckBox();
             this.btnSortByDate = new System.Windows.Forms.Button();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFehlzeiten)).BeginInit();
-            this.tabControl1.SuspendLayout();
-            this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.tabControl1.SuspendLayout();
+            this.tabPage1.SuspendLayout();
             this.SuspendLayout();
             // 
             // dgvFehlzeiten
@@ -89,6 +89,47 @@
             this.cbMonat.TabIndex = 7;
             this.cbMonat.Text = "Monat";
             // 
+            // chbInsgesamt
+            // 
+            this.chbInsgesamt.AutoSize = true;
+            this.chbInsgesamt.Location = new System.Drawing.Point(49, 41);
+            this.chbInsgesamt.Name = "chbInsgesamt";
+            this.chbInsgesamt.Size = new System.Drawing.Size(73, 17);
+            this.chbInsgesamt.TabIndex = 9;
+            this.chbInsgesamt.Text = "insgesamt";
+            this.chbInsgesamt.UseVisualStyleBackColor = true;
+            this.chbInsgesamt.CheckedChanged += new System.EventHandler(this.chbInsgesamt_CheckedChanged);
+            // 
+            // btnSortByDate
+            // 
+            this.btnSortByDate.Location = new System.Drawing.Point(303, 13);
+            this.btnSortByDate.Name = "btnSortByDate";
+            this.btnSortByDate.Size = new System.Drawing.Size(75, 23);
+            this.btnSortByDate.TabIndex = 10;
+            this.btnSortByDate.Text = "Suchen";
+            this.btnSortByDate.UseVisualStyleBackColor = true;
+            this.btnSortByDate.Click += new System.EventHandler(this.btnSortByDate_Click);
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.dataGridView1);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(435, 554);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "Einsätze";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView1.Location = new System.Drawing.Point(3, 3);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(429, 548);
+            this.dataGridView1.TabIndex = 0;
+            // 
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
@@ -111,47 +152,6 @@
             this.tabPage1.Text = "Fehlzeiten";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // tabPage2
-            // 
-            this.tabPage2.Controls.Add(this.dataGridView1);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(435, 549);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Einsätze";
-            this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(3, 3);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(429, 543);
-            this.dataGridView1.TabIndex = 0;
-            // 
-            // chbInsgesamt
-            // 
-            this.chbInsgesamt.AutoSize = true;
-            this.chbInsgesamt.Location = new System.Drawing.Point(49, 41);
-            this.chbInsgesamt.Name = "chbInsgesamt";
-            this.chbInsgesamt.Size = new System.Drawing.Size(73, 17);
-            this.chbInsgesamt.TabIndex = 9;
-            this.chbInsgesamt.Text = "insgesamt";
-            this.chbInsgesamt.UseVisualStyleBackColor = true;
-            this.chbInsgesamt.CheckedChanged += new System.EventHandler(this.chbInsgesamt_CheckedChanged);
-            // 
-            // btnSortByDate
-            // 
-            this.btnSortByDate.Location = new System.Drawing.Point(303, 13);
-            this.btnSortByDate.Name = "btnSortByDate";
-            this.btnSortByDate.Size = new System.Drawing.Size(75, 23);
-            this.btnSortByDate.TabIndex = 10;
-            this.btnSortByDate.Text = "Suchen";
-            this.btnSortByDate.UseVisualStyleBackColor = true;
-            this.btnSortByDate.Click += new System.EventHandler(this.btnSortByDate_Click);
-            // 
             // Auswertung
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -166,10 +166,10 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Auswertung";
             ((System.ComponentModel.ISupportInitialize)(this.dgvFehlzeiten)).EndInit();
-            this.tabControl1.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.tabControl1.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -179,11 +179,11 @@
         private System.Windows.Forms.DataGridView dgvFehlzeiten;
         private System.Windows.Forms.ComboBox cbJahr;
         private System.Windows.Forms.ComboBox cbMonat;
-        private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.CheckBox chbInsgesamt;
         private System.Windows.Forms.Button btnSortByDate;
+        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabPage tabPage1;
     }
 }

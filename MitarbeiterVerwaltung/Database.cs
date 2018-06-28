@@ -13,10 +13,12 @@ namespace MitarbeiterVerwaltung
     class Database
     {
         private MySqlConnection dbConnection;
+
         public Database()
         {
             connect();
         }
+
         public void connect()
         {
             try
@@ -126,20 +128,18 @@ namespace MitarbeiterVerwaltung
         public List<Mitarbeiter> getPersonalList()
         {
             List<Mitarbeiter> list = new List<Mitarbeiter>();
-            Mitarbeiter m;
             MySqlDataReader reader = sooperDooperMysqlFuncyWunky("SELECT * FROM mitarbeiter ORDER BY nachname ASC");
 
             while (reader.Read())
             {
-                m = new Mitarbeiter(
+                list.Add(new Mitarbeiter(
                     reader.GetInt32(0),
                     reader.GetString(1),
                     reader.GetString(2),
                     reader.GetString(3),
                     reader.IsDBNull(0) ? 0 : reader.GetInt32(4),
                     reader.IsDBNull(0) ? 0 : reader.GetInt32(5)
-                    );
-                list.Add(m);
+                    ));
             }
 
             reader.Close();
@@ -150,18 +150,15 @@ namespace MitarbeiterVerwaltung
         public List<Fehlgrund> getFehlgrund()
         {
             List<Fehlgrund> list = new List<Fehlgrund>();
-            Fehlgrund f;
             MySqlDataReader reader = sooperDooperMysqlFuncyWunky("SELECT * FROM fehlgrund ORDER BY grund ASC");
 
             while (reader.Read())
             {
-                f = new Fehlgrund(
+                list.Add(new Fehlgrund(
                     reader.GetInt32(0),
                     reader.GetString(1)
-                    );
-                list.Add(f);
+                    ));
             }
-
             reader.Close();
 
             return list;
@@ -170,22 +167,18 @@ namespace MitarbeiterVerwaltung
         public List<Einsatz> getEinsatzList(int id)
         {
             List<Einsatz> list = new List<Einsatz>();
-            Einsatz e;
-
             MySqlDataReader reader = sooperDooperMysqlFuncyWunky($"SELECT * FROM einsatz WHERE Ma_id={id}");
 
             while (reader.Read())
             {
-                e = new Einsatz(
+                list.Add(new Einsatz(
                     reader.GetInt32(0),
                     reader.GetInt32(1),
                     reader.GetString(2),
                     reader.GetString(3),
                     reader.GetString(4)
-                    );
-                list.Add(e);
+                    ));
             }
-
             reader.Close();
 
             return list;
@@ -193,20 +186,19 @@ namespace MitarbeiterVerwaltung
         public List<Fehlzeit> getFehlzeitList(int id)
         {
             List<Fehlzeit> list = new List<Fehlzeit>();
-            Fehlzeit f;
+
             MySqlDataReader reader = sooperDooperMysqlFuncyWunky($"SELECT * FROM fehlzeit WHERE Ma_id={id}");
 
             while (reader.Read())
             {
-                f = new Fehlzeit(
+                list.Add(new Fehlzeit(
                     reader.GetInt32(0),
                     reader.GetInt32(1),
                     reader.GetString(2),
                     reader.GetString(3),
                     reader.GetInt32(4),
                     reader.GetInt32(5)
-                    );
-                list.Add(f);
+                    ));
             }
 
             reader.Close();
@@ -225,16 +217,14 @@ namespace MitarbeiterVerwaltung
                 "FROM mitarbeiter, fehlzeit, fehlgrund " +
                 "WHERE fehlzeit.Ma_id = mitarbeiter.Id AND fehlgrund.Id=fehlzeit.Grund_id GROUP BY mitarbeiter.Id";
                 MySqlDataReader reader = sooperDooperMysqlFuncyWunky(q);
-                AuswertungFehlzeit f;
-
+ 
                 while (reader.Read())
                 {
-                    f = new AuswertungFehlzeit(
+                    list.Add(new AuswertungFehlzeit(
                         reader.GetString(0),
                         reader.GetString(1),
                         reader.GetInt32(2)
-                        );
-                    list.Add(f);
+                        ));
                 }
 
                 reader.Close();
@@ -245,17 +235,15 @@ namespace MitarbeiterVerwaltung
                     "FROM mitarbeiter, fehlzeit, fehlgrund " +
                     "WHERE fehlzeit.Ma_id = mitarbeiter.Id AND fehlgrund.Id=fehlzeit.Grund_id GROUP BY mitarbeiter.Id, fehlgrund.Id";
                 MySqlDataReader reader = sooperDooperMysqlFuncyWunky(q);
-                AuswertungFehlzeit f;
 
                 while (reader.Read())
                 {
-                    f = new AuswertungFehlzeit(
+                    list.Add(new AuswertungFehlzeit(
                         reader.GetString(0),
                         reader.GetString(1),
                         reader.GetString(2),
                         reader.GetInt32(3)
-                        );
-                    list.Add(f);
+                        ));
                 }
 
                 reader.Close();
