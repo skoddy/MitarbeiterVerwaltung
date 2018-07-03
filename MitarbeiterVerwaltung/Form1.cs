@@ -17,6 +17,7 @@ namespace MitarbeiterVerwaltung
         List<Fehlzeit> fehlzeit = new List<Fehlzeit>();
 
         Database db = new Database();
+        XMLDB xmlDB = new XMLDB();
 
         public MitarbeiterVerwaltung()
         {
@@ -30,7 +31,7 @@ namespace MitarbeiterVerwaltung
 
             foreach (Mitarbeiter m in mitarbeiter)
             {
-                lbMitarbeiter.Items.Add(m.Vorname + ", " + m.Nachname);
+                lbMitarbeiter.Items.Add(m.Nachname + ", " + m.Vorname);
             }
         }
 
@@ -81,10 +82,9 @@ namespace MitarbeiterVerwaltung
         {
             string vorname = tbVorname.Text;
             string nachname = tbNachname.Text;
-            string gebdat = dtpGebDat.Value.Date.ToString("yyyy-MM-dd");
+            string gebdat = Convert.ToDateTime(tbGebdat.Text).ToString("yyyy-MM-dd");
             int arbeitszeit = Convert.ToInt32(tbArbeitszeit.Text);
             int urlaub = Convert.ToInt32(tbAnspruchUrlaub.Text);
-            MessageBox.Show(dtpGebDat.Value.Date.ToString("yyyy-MM-dd"));
             db.Insert("mitarbeiter", new Mitarbeiter(0, vorname, nachname, gebdat, arbeitszeit, urlaub));
             fillMitarbeiterBox();
         }
@@ -94,7 +94,7 @@ namespace MitarbeiterVerwaltung
             tbArbeitszeit.Clear();
             tbNachname.Clear();
             tbVorname.Clear();
-            dtpGebDat.Value = DateTimePicker.MinimumDateTime;
+            tbGebdat.Clear();
         }
 
         private void lbMitarbeiter_SelectedIndexChanged(object sender, EventArgs e)
@@ -104,7 +104,7 @@ namespace MitarbeiterVerwaltung
                 int index = lbMitarbeiter.SelectedIndex;
                 tbVorname.Text = mitarbeiter[index].Vorname;
                 tbNachname.Text = mitarbeiter[index].Nachname;
-                dtpGebDat.Value = Convert.ToDateTime(mitarbeiter[index].Gebdat);
+                tbGebdat.Text = Convert.ToDateTime(mitarbeiter[index].Gebdat).ToShortDateString();
                 tbArbeitszeit.Text = mitarbeiter[index].Arbeitszeit_tag.ToString();
                 tbAnspruchUrlaub.Text = mitarbeiter[index].Urlaubszeit.ToString();
 
@@ -118,7 +118,7 @@ namespace MitarbeiterVerwaltung
             int id = lbMitarbeiter.SelectedIndex;
             string vorname = tbVorname.Text;
             string nachname = tbNachname.Text;
-            string gebdat = dtpGebDat.Value.Date.ToString("yyyy-MM-dd");
+            string gebdat = Convert.ToDateTime(tbGebdat.Text).ToString("yyyy-MM-dd");
             int arbeitszeit = Convert.ToInt32(tbArbeitszeit.Text);
             int urlaub = Convert.ToInt32(tbAnspruchUrlaub);
             db.Update("mitarbeiter", id, new Mitarbeiter(id, vorname, nachname, gebdat, arbeitszeit, urlaub));
@@ -158,7 +158,7 @@ namespace MitarbeiterVerwaltung
                 int id = mitarbeiter[index].Id;
                 string vorname = tbVorname.Text;
                 string nachname = tbNachname.Text;
-                string gebdat = dtpGebDat.Value.Date.ToString("yyyy-MM-dd");
+                string gebdat = Convert.ToDateTime(tbGebdat.Text).ToString("yyyy-MM-dd");
                 int arbeitszeit = Convert.ToInt32(tbArbeitszeit.Text);
                 int urlaub = Convert.ToInt32(tbAnspruchUrlaub.Text);
                 db.Update("mitarbeiter", id, new Mitarbeiter(id, vorname, nachname, gebdat, arbeitszeit, urlaub));
@@ -202,6 +202,17 @@ namespace MitarbeiterVerwaltung
         {
             Auswertung a = new Auswertung(this);
             a.ShowDialog();
+        }
+
+        private void mitarbeiterToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            xmlDB.export(mitarbeiter);
+        }
+
+        private void mitarbeiterGenerierenToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            db.generateDB();
+            fillMitarbeiterBox();
         }
     }
 }

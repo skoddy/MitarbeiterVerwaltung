@@ -29,9 +29,9 @@ namespace MitarbeiterVerwaltung
 
         private void btnNeuerEinsatz_Click(object sender, EventArgs e)
         {
-            string datum = dtpEinsatzDatum.Value.ToString("yyyy-MM-dd");
-            string von = dtpEinsatzVonUhrzeit.Value.ToString("HH:mm");
-            string bis = dtpEinsatzBisUhrzeit.Value.ToString("HH:mm");
+            string datum = Convert.ToDateTime(tbEinsatzDatum.Text).ToString("yyyy-MM-dd");
+            string von = Convert.ToDateTime(tbEinsatzVonUhrzeit.Text).ToString("HH:mm");
+            string bis = Convert.ToDateTime(tbEinsatzBisUhrzeit.Text).ToString("HH:mm");
             db.Insert("einsatz", new Einsatz(0, mitarbeiterId, datum, von, bis));
             MV.fillEinsatzBox(mitarbeiterId);
             this.Close();

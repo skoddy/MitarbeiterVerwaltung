@@ -31,11 +31,11 @@
             this.btnNeuerEinsatz = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            this.dtpEinsatzBisUhrzeit = new System.Windows.Forms.DateTimePicker();
-            this.dtpEinsatzVonUhrzeit = new System.Windows.Forms.DateTimePicker();
-            this.dtpEinsatzDatum = new System.Windows.Forms.DateTimePicker();
             this.label6 = new System.Windows.Forms.Label();
             this.btnAbbrechen = new System.Windows.Forms.Button();
+            this.tbEinsatzDatum = new System.Windows.Forms.MaskedTextBox();
+            this.tbEinsatzVonUhrzeit = new System.Windows.Forms.MaskedTextBox();
+            this.tbEinsatzBisUhrzeit = new System.Windows.Forms.MaskedTextBox();
             this.SuspendLayout();
             // 
             // btnNeuerEinsatz
@@ -66,36 +66,6 @@
             this.label10.TabIndex = 4;
             this.label10.Text = "Von (Uhrzeit)";
             // 
-            // dtpEinsatzBisUhrzeit
-            // 
-            this.dtpEinsatzBisUhrzeit.CustomFormat = "HH:mm";
-            this.dtpEinsatzBisUhrzeit.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpEinsatzBisUhrzeit.Location = new System.Drawing.Point(163, 106);
-            this.dtpEinsatzBisUhrzeit.Name = "dtpEinsatzBisUhrzeit";
-            this.dtpEinsatzBisUhrzeit.ShowUpDown = true;
-            this.dtpEinsatzBisUhrzeit.Size = new System.Drawing.Size(69, 20);
-            this.dtpEinsatzBisUhrzeit.TabIndex = 3;
-            this.dtpEinsatzBisUhrzeit.Value = new System.DateTime(2018, 6, 28, 12, 0, 0, 0);
-            // 
-            // dtpEinsatzVonUhrzeit
-            // 
-            this.dtpEinsatzVonUhrzeit.CustomFormat = "HH:mm";
-            this.dtpEinsatzVonUhrzeit.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpEinsatzVonUhrzeit.Location = new System.Drawing.Point(12, 106);
-            this.dtpEinsatzVonUhrzeit.Name = "dtpEinsatzVonUhrzeit";
-            this.dtpEinsatzVonUhrzeit.ShowUpDown = true;
-            this.dtpEinsatzVonUhrzeit.Size = new System.Drawing.Size(68, 20);
-            this.dtpEinsatzVonUhrzeit.TabIndex = 2;
-            this.dtpEinsatzVonUhrzeit.Value = new System.DateTime(2018, 6, 28, 12, 0, 0, 0);
-            // 
-            // dtpEinsatzDatum
-            // 
-            this.dtpEinsatzDatum.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpEinsatzDatum.Location = new System.Drawing.Point(12, 41);
-            this.dtpEinsatzDatum.Name = "dtpEinsatzDatum";
-            this.dtpEinsatzDatum.Size = new System.Drawing.Size(220, 20);
-            this.dtpEinsatzDatum.TabIndex = 1;
-            // 
             // label6
             // 
             this.label6.AutoSize = true;
@@ -115,19 +85,46 @@
             this.btnAbbrechen.UseVisualStyleBackColor = true;
             this.btnAbbrechen.Click += new System.EventHandler(this.btnAbbrechen_Click);
             // 
+            // tbEinsatzDatum
+            // 
+            this.tbEinsatzDatum.Location = new System.Drawing.Point(12, 41);
+            this.tbEinsatzDatum.Mask = "00/00/0000";
+            this.tbEinsatzDatum.Name = "tbEinsatzDatum";
+            this.tbEinsatzDatum.Size = new System.Drawing.Size(100, 20);
+            this.tbEinsatzDatum.TabIndex = 8;
+            this.tbEinsatzDatum.ValidatingType = typeof(System.DateTime);
+            // 
+            // tbEinsatzVonUhrzeit
+            // 
+            this.tbEinsatzVonUhrzeit.Location = new System.Drawing.Point(11, 106);
+            this.tbEinsatzVonUhrzeit.Mask = "90:00";
+            this.tbEinsatzVonUhrzeit.Name = "tbEinsatzVonUhrzeit";
+            this.tbEinsatzVonUhrzeit.Size = new System.Drawing.Size(100, 20);
+            this.tbEinsatzVonUhrzeit.TabIndex = 9;
+            this.tbEinsatzVonUhrzeit.ValidatingType = typeof(System.DateTime);
+            // 
+            // tbEinsatzBisUhrzeit
+            // 
+            this.tbEinsatzBisUhrzeit.Location = new System.Drawing.Point(131, 106);
+            this.tbEinsatzBisUhrzeit.Mask = "90:00";
+            this.tbEinsatzBisUhrzeit.Name = "tbEinsatzBisUhrzeit";
+            this.tbEinsatzBisUhrzeit.Size = new System.Drawing.Size(100, 20);
+            this.tbEinsatzBisUhrzeit.TabIndex = 10;
+            this.tbEinsatzBisUhrzeit.ValidatingType = typeof(System.DateTime);
+            // 
             // NeuerEinsatz
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(246, 198);
+            this.Controls.Add(this.tbEinsatzBisUhrzeit);
+            this.Controls.Add(this.tbEinsatzVonUhrzeit);
+            this.Controls.Add(this.tbEinsatzDatum);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label11);
-            this.Controls.Add(this.dtpEinsatzVonUhrzeit);
             this.Controls.Add(this.btnAbbrechen);
-            this.Controls.Add(this.dtpEinsatzBisUhrzeit);
             this.Controls.Add(this.btnNeuerEinsatz);
-            this.Controls.Add(this.dtpEinsatzDatum);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "NeuerEinsatz";
@@ -142,10 +139,10 @@
         private System.Windows.Forms.Button btnNeuerEinsatz;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.DateTimePicker dtpEinsatzBisUhrzeit;
-        private System.Windows.Forms.DateTimePicker dtpEinsatzVonUhrzeit;
-        private System.Windows.Forms.DateTimePicker dtpEinsatzDatum;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button btnAbbrechen;
+        private System.Windows.Forms.MaskedTextBox tbEinsatzDatum;
+        private System.Windows.Forms.MaskedTextBox tbEinsatzVonUhrzeit;
+        private System.Windows.Forms.MaskedTextBox tbEinsatzBisUhrzeit;
     }
 }

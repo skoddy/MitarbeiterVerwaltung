@@ -7,12 +7,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Linq;
+using System.Xml;
 
 namespace MitarbeiterVerwaltung
 {
     class Database
     {
         private MySqlConnection dbConnection;
+        private Random gen = new Random();
 
         public Database()
         {
@@ -216,7 +218,7 @@ namespace MitarbeiterVerwaltung
             {
                 q = "SELECT mitarbeiter.Vorname, mitarbeiter.Nachname, SUM(fehlzeit.Fehltage) " +
                 "FROM mitarbeiter, fehlzeit, fehlgrund " +
-                "WHERE fehlzeit.Ma_id = mitarbeiter.Id AND fehlgrund.Id=fehlzeit.Grund_id GROUP BY mitarbeiter.Id";
+                "WHERE fehlzeit.Ma_id = mitarbeiter.Id AND fehlgrund.Id=fehlzeit.Grund_id GROUP BY mitarbeiter.Id ORDER BY mitarbeiter.Nachname";
                 MySqlDataReader reader = sooperDooperMysqlFuncyWunky(q);
  
                 while (reader.Read())
@@ -234,7 +236,7 @@ namespace MitarbeiterVerwaltung
             {
                 q = "SELECT mitarbeiter.Vorname, mitarbeiter.Nachname, fehlgrund.Grund, SUM(fehlzeit.Fehltage) " +
                     "FROM mitarbeiter, fehlzeit, fehlgrund " +
-                    "WHERE fehlzeit.Ma_id = mitarbeiter.Id AND fehlgrund.Id=fehlzeit.Grund_id GROUP BY mitarbeiter.Id, fehlgrund.Id";
+                    "WHERE fehlzeit.Ma_id = mitarbeiter.Id AND fehlgrund.Id=fehlzeit.Grund_id GROUP BY mitarbeiter.Id, fehlgrund.Id ORDER BY mitarbeiter.Nachname";
                 MySqlDataReader reader = sooperDooperMysqlFuncyWunky(q);
 
                 while (reader.Read())
@@ -261,6 +263,50 @@ namespace MitarbeiterVerwaltung
             return reader;
         }
 
+        public void generateDB()
+        {
+            
+            for (int i = 1; i < 1000; i++)
+            {
+                int arbeitszeit = gen.Next(5, 9);
+                int urlaub = gen.Next(20, 29);
+                string gebdat = BirthDay().ToString("yyyy-MM-dd");
+                Insert("mitarbeiter", new Mitarbeiter(i, Faker.Name.First(), Faker.Name.Last(), gebdat, arbeitszeit, urlaub));
+                int randomFehlzeiten = gen.Next(1, 5);
+
+                for (int j = 0; j < randomFehlzeiten; j++)
+                {
+                    DateTime vonT = RandomDay();
+                    string von = vonT.ToString("yyyy-MM-dd");
+                    int days = gen.Next(1, 14);
+                    DateTime bisT = vonT.AddDays(days);
+                    string bis = bisT.ToString("yyyy-MM-dd");
+
+                    int grund_id = gen.Next(1, 4);
+
+                    DateTime d1 = vonT;
+                    DateTime d2 = bisT;
+
+                    int fehltage = Convert.ToInt32((d1 - d2).TotalDays);
+
+                    fehltage = (fehltage * -1) + 1;
+                    Insert("fehlzeit", new Fehlzeit(0, i, von, bis, grund_id, fehltage));
+                }
+
+            }
+        }
+        private DateTime RandomDay()
+        {
+            DateTime start = new DateTime(1995, 1, 1);
+            int range = (DateTime.Today - start).Days;
+            return start.AddDays(gen.Next(range));
+        }
+        private DateTime BirthDay()
+        {
+            DateTime start = new DateTime(1960, 1, 1);
+            int range = (new DateTime(2000, 1, 1) - start).Days;
+            return start.AddDays(gen.Next(range));
+        }
         ~Database()
         {
             disconnect();

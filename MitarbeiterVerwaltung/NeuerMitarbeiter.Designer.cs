@@ -33,13 +33,13 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.dtpGebDat = new System.Windows.Forms.DateTimePicker();
             this.tbAnspruchUrlaub = new System.Windows.Forms.TextBox();
             this.tbArbeitszeit = new System.Windows.Forms.TextBox();
             this.tbNachname = new System.Windows.Forms.TextBox();
             this.tbVorname = new System.Windows.Forms.TextBox();
             this.btnNeuerMitarbeiter = new System.Windows.Forms.Button();
             this.btnAbbrechen = new System.Windows.Forms.Button();
+            this.tbGebdat = new System.Windows.Forms.MaskedTextBox();
             this.SuspendLayout();
             // 
             // label5
@@ -86,14 +86,6 @@
             this.label1.Size = new System.Drawing.Size(49, 13);
             this.label1.TabIndex = 7;
             this.label1.Text = "Vorname";
-            // 
-            // dtpGebDat
-            // 
-            this.dtpGebDat.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpGebDat.Location = new System.Drawing.Point(12, 115);
-            this.dtpGebDat.Name = "dtpGebDat";
-            this.dtpGebDat.Size = new System.Drawing.Size(200, 20);
-            this.dtpGebDat.TabIndex = 6;
             // 
             // tbAnspruchUrlaub
             // 
@@ -142,11 +134,21 @@
             this.btnAbbrechen.Text = "Abbrechen";
             this.btnAbbrechen.UseVisualStyleBackColor = true;
             // 
+            // tbGebdat
+            // 
+            this.tbGebdat.Location = new System.Drawing.Point(12, 115);
+            this.tbGebdat.Mask = "00/00/0000";
+            this.tbGebdat.Name = "tbGebdat";
+            this.tbGebdat.Size = new System.Drawing.Size(100, 20);
+            this.tbGebdat.TabIndex = 13;
+            this.tbGebdat.ValidatingType = typeof(System.DateTime);
+            // 
             // NeuerMitarbeiter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(230, 268);
+            this.Controls.Add(this.tbGebdat);
             this.Controls.Add(this.btnAbbrechen);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
@@ -157,7 +159,6 @@
             this.Controls.Add(this.tbNachname);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.tbArbeitszeit);
-            this.Controls.Add(this.dtpGebDat);
             this.Controls.Add(this.tbAnspruchUrlaub);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -175,12 +176,12 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DateTimePicker dtpGebDat;
         private System.Windows.Forms.TextBox tbAnspruchUrlaub;
         private System.Windows.Forms.TextBox tbArbeitszeit;
         private System.Windows.Forms.TextBox tbNachname;
         private System.Windows.Forms.TextBox tbVorname;
         private System.Windows.Forms.Button btnNeuerMitarbeiter;
         private System.Windows.Forms.Button btnAbbrechen;
+        private System.Windows.Forms.MaskedTextBox tbGebdat;
     }
 }

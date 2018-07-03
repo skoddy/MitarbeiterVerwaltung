@@ -36,7 +36,6 @@
             this.tbNachname = new System.Windows.Forms.TextBox();
             this.tbArbeitszeit = new System.Windows.Forms.TextBox();
             this.tbAnspruchUrlaub = new System.Windows.Forms.TextBox();
-            this.dtpGebDat = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -55,6 +54,10 @@
             this.fehlzeitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.auswertungToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fehlzeitenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mitarbeiterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mitarbeiterGenerierenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tbGebdat = new System.Windows.Forms.MaskedTextBox();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -130,14 +133,6 @@
             this.tbAnspruchUrlaub.Size = new System.Drawing.Size(238, 20);
             this.tbAnspruchUrlaub.TabIndex = 5;
             // 
-            // dtpGebDat
-            // 
-            this.dtpGebDat.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpGebDat.Location = new System.Drawing.Point(6, 122);
-            this.dtpGebDat.Name = "dtpGebDat";
-            this.dtpGebDat.Size = new System.Drawing.Size(238, 20);
-            this.dtpGebDat.TabIndex = 6;
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -196,13 +191,13 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.tbGebdat);
             this.groupBox1.Controls.Add(this.btnMitarbeiterUpdate);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.dtpGebDat);
             this.groupBox1.Controls.Add(this.tbAnspruchUrlaub);
             this.groupBox1.Controls.Add(this.tbArbeitszeit);
             this.groupBox1.Controls.Add(this.tbNachname);
@@ -263,7 +258,8 @@
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.neuToolStripMenuItem,
-            this.auswertungToolStripMenuItem});
+            this.auswertungToolStripMenuItem,
+            this.exportToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(505, 24);
@@ -275,7 +271,8 @@
             this.neuToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.neuerMitarbeiterToolStripMenuItem,
             this.einsatzToolStripMenuItem,
-            this.fehlzeitToolStripMenuItem});
+            this.fehlzeitToolStripMenuItem,
+            this.mitarbeiterGenerierenToolStripMenuItem});
             this.neuToolStripMenuItem.Name = "neuToolStripMenuItem";
             this.neuToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
             this.neuToolStripMenuItem.Text = "Neu...";
@@ -283,21 +280,21 @@
             // neuerMitarbeiterToolStripMenuItem
             // 
             this.neuerMitarbeiterToolStripMenuItem.Name = "neuerMitarbeiterToolStripMenuItem";
-            this.neuerMitarbeiterToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.neuerMitarbeiterToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
             this.neuerMitarbeiterToolStripMenuItem.Text = "Mitarbeiter";
             this.neuerMitarbeiterToolStripMenuItem.Click += new System.EventHandler(this.neuToolStripMenuItem_Click);
             // 
             // einsatzToolStripMenuItem
             // 
             this.einsatzToolStripMenuItem.Name = "einsatzToolStripMenuItem";
-            this.einsatzToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.einsatzToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
             this.einsatzToolStripMenuItem.Text = "Einsatz";
             this.einsatzToolStripMenuItem.Click += new System.EventHandler(this.einsatzToolStripMenuItem_Click);
             // 
             // fehlzeitToolStripMenuItem
             // 
             this.fehlzeitToolStripMenuItem.Name = "fehlzeitToolStripMenuItem";
-            this.fehlzeitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.fehlzeitToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
             this.fehlzeitToolStripMenuItem.Text = "Fehlzeit";
             this.fehlzeitToolStripMenuItem.Click += new System.EventHandler(this.fehlzeitToolStripMenuItem_Click);
             // 
@@ -315,6 +312,37 @@
             this.fehlzeitenToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.fehlzeitenToolStripMenuItem.Text = "Fehlzeiten";
             this.fehlzeitenToolStripMenuItem.Click += new System.EventHandler(this.fehlzeitenToolStripMenuItem_Click);
+            // 
+            // exportToolStripMenuItem
+            // 
+            this.exportToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mitarbeiterToolStripMenuItem});
+            this.exportToolStripMenuItem.Name = "exportToolStripMenuItem";
+            this.exportToolStripMenuItem.Size = new System.Drawing.Size(52, 20);
+            this.exportToolStripMenuItem.Text = "Export";
+            // 
+            // mitarbeiterToolStripMenuItem
+            // 
+            this.mitarbeiterToolStripMenuItem.Name = "mitarbeiterToolStripMenuItem";
+            this.mitarbeiterToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.mitarbeiterToolStripMenuItem.Text = "Mitarbeiter";
+            this.mitarbeiterToolStripMenuItem.Click += new System.EventHandler(this.mitarbeiterToolStripMenuItem_Click);
+            // 
+            // mitarbeiterGenerierenToolStripMenuItem
+            // 
+            this.mitarbeiterGenerierenToolStripMenuItem.Name = "mitarbeiterGenerierenToolStripMenuItem";
+            this.mitarbeiterGenerierenToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
+            this.mitarbeiterGenerierenToolStripMenuItem.Text = "Mitarbeiter generieren";
+            this.mitarbeiterGenerierenToolStripMenuItem.Click += new System.EventHandler(this.mitarbeiterGenerierenToolStripMenuItem_Click);
+            // 
+            // tbGebdat
+            // 
+            this.tbGebdat.Location = new System.Drawing.Point(6, 122);
+            this.tbGebdat.Mask = "00/00/0000";
+            this.tbGebdat.Name = "tbGebdat";
+            this.tbGebdat.Size = new System.Drawing.Size(100, 20);
+            this.tbGebdat.TabIndex = 13;
+            this.tbGebdat.ValidatingType = typeof(System.DateTime);
             // 
             // MitarbeiterVerwaltung
             // 
@@ -353,7 +381,6 @@
         private System.Windows.Forms.TextBox tbNachname;
         private System.Windows.Forms.TextBox tbArbeitszeit;
         private System.Windows.Forms.TextBox tbAnspruchUrlaub;
-        private System.Windows.Forms.DateTimePicker dtpGebDat;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
@@ -372,6 +399,10 @@
         private System.Windows.Forms.ToolStripMenuItem fehlzeitToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem auswertungToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem fehlzeitenToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exportToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mitarbeiterToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mitarbeiterGenerierenToolStripMenuItem;
+        private System.Windows.Forms.MaskedTextBox tbGebdat;
     }
 }
 
